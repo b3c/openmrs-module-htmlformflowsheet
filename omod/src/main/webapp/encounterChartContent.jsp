@@ -116,7 +116,7 @@
 									alt="edit"/>			
 							<input type="image" src="${pageContext.request.contextPath}/images/trash.gif"  
 								    name="voidEncounter" 
-									onclick="voidEncounter${model.portletUUID}('${model.portletUUID}',${enc.encounterId}, ${model.formId}, confirm('<spring:message code="Are you sure you want to delete this encounter?"/>'));" 
+									onclick="voidEncounter${model.portletUUID}('${model.portletUUID}',${enc.encounterId}, ${model.formId}, confirm('<spring:message code="Sei sicuro di voler cancellare questa scheda?"/>'));"
 									title="<spring:message code="htmlformflowsheet.deleteEncounters"/>" 
 									alt="<spring:message code="htmlformflowsheet.deleteEncounters"/>"/>
 			             </c:if>

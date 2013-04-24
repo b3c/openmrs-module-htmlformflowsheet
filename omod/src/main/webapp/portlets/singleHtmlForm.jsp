@@ -21,7 +21,7 @@
 		//does the original load...
 		<c:if test="${!empty model.encounterToDisplay.encounterId}">
 		    $j('#singleFormContentIframe_${model.portletUUID}').attr("src", "${pageContext.request.contextPath}/module/htmlformentry/htmlFormEntry.form?inPopup=true&encounterId=${model.encounterToDisplay.encounterId}");
-			$j('#editTag_${model.portletUUID}').html("<a href='#' onClick='showSingleEntryPopupForEdit${model.portletUUID}(\"${model.portletUUID}\", ${model.personId}, ${model.formId}, ${model.view}, ${model.encounterToDisplay.encounterId})'>edit</a>");
+			$j('#editTag_${model.portletUUID}').html("<a href='#' onClick='showSingleEntryPopupForEdit${model.portletUUID}(\"${model.portletUUID}\", ${model.personId}, ${model.formId}, ${model.view}, ${model.encounterToDisplay.encounterId})'>Modifica</a>");
 		</c:if>	
 	
 	});
@@ -71,7 +71,7 @@
 			    if (encounterId == ''){
 				    HtmlFlowsheetDWR.getNewEncounterId('${model.which}', formId, personId,function(ret){
 										if (ret != 0){
-											$j('#editTag_${model.portletUUID}').html("<a href='#' onClick='showSingleEntryPopupForEdit${model.portletUUID}(\"${model.portletUUID}\", ${model.personId}, " + formId + ", ${model.view},  " + ret + ")'>edit</a>");
+											$j('#editTag_${model.portletUUID}').html("<a href='#' onClick='showSingleEntryPopupForEdit${model.portletUUID}(\"${model.portletUUID}\", ${model.personId}, " + formId + ", ${model.view},  " + ret + ")'>Modifica</a>");
 											//$j('#htmlForm_${model.portletUUID}').load(openmrsContextPath + "/module/htmlformentry/htmlFormEntry.form?encounterId=" + ret +"&inPopup=true");
 										    $j('#singleFormContentIframe_${model.portletUUID}').attr("src", "${pageContext.request.contextPath}/module/htmlformentry/htmlFormEntry.form?inPopup=true&encounterId=" + ret);
 											$j('#fillOutFormDiv_${model.portletUUID}').html('');
@@ -113,7 +113,7 @@
 			<iframe id="singleFormContentIframe_${model.portletUUID}" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto"><span>loading...</span></iframe>
 	</c:if>
 	<c:if test="${model.encounterToDisplay == null}">	
-	 		<div id="fillOutFormDiv_${model.portletUUID}"><a href="#" onClick="showSingleEntryPopup${model.portletUUID}('${model.portletUUID}', ${model.personId}, ${model.formId}, ${model.view})">fill out form</a></div>
+	 		<div id="fillOutFormDiv_${model.portletUUID}"><a href="#" onClick="showSingleEntryPopup${model.portletUUID}('${model.portletUUID}', ${model.personId}, ${model.formId}, ${model.view})">Crea scheda</a></div>
 	 		<iframe id="singleFormContentIframe_${model.portletUUID}" width="100%" height="100%" marginWidth="0" marginHeight="0" frameBorder="0" scrolling="auto"></iframe>
 	</c:if>
 </div>

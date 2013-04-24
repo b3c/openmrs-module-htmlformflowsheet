@@ -28,7 +28,7 @@
 		var savedRet = new Array();
 		var mappedRet = new Array();
 		var showLoading = 0;
-		var $j = jQuery.noConflict();		
+		var $j = jQuery.noConflict();
 		$j(document).ready(function(){
    				$j('#results_${model.portletUUID}').css('display','none');
    				$j('#searchBox_${model.portletUUID}').val('');
@@ -44,20 +44,20 @@
    				   		  		return;
    				   		    }
 	   						HtmlFormFlowhseetFindPatient.findPatients($j('#searchBox_${model.portletUUID}').val(), $j("input[name='restrictByProgram']:checked").val(),$j("input[name='programs_${model.portletUUID}']:checked").val() ,false, function(ret){
-	   						from = 0; 
-	   						to = jumps-1; 
+	   						from = 0;
+	   						to = jumps-1;
 							if (ret.length <= to)
 								to = ret.length -1;
-	   						savedRet = ret; 
+	   						savedRet = ret;
 	   						retSize = ret.length;
 	   						drawTable(savedRet);});
    						}
    						else {
    	   						$j('#results_${model.portletUUID}').hide();
    						}
-   			});	
+   			});
  		});
-	
+
 	function addRowEventsFindPatient(){
 		var tbody = document.getElementById('resTableBody');
 		var trs = tbody.getElementsByTagName("tr");
@@ -76,10 +76,10 @@
 					 $j('table.resTable tbody tr:odd').addClass('oddRow');
   					$j('table.resTable tbody tr:even').addClass('evenRow');
 				}
-			}	
+			}
 		}
 	}
-	
+
 	function selectPatient(input){
 		<c:choose>
 			<c:when test="${not empty model.callback}">
@@ -97,18 +97,18 @@
 	   		    	var p = $j("input[name='programs_${model.portletUUID}']:checked").val();
 	   		    	if (programLinkMap[p] == null){
 	   		    		alert("invalid programID.  Please tell your local administrator to fix the global property htmlformflowsheet.programConfigurationMap");
-	   		    		return;	
-	   		    	}	
+	   		    		return;
+	   		    	}
 	   		    	window.location='${pageContext.request.contextPath}/module/htmlformflowsheet/patientWidgetChart.list?patientId=' + input + "&" + programLinkMap[p];
 	   		    }
-	   		    
+
 	   		</c:otherwise>
 	   	</c:choose>
 	}
 	function mouseOver(input){
 		classTmp = this.className;
 		input.className="rowMouseOver";
-		refresh(this);	
+		refresh(this);
 	}
 	function mouseOut(input){
 		input.className = classTmp;
@@ -133,13 +133,13 @@
 	function getDateString(d) {
 		var str = '';
 		if (d != null) {
-			
+
 			// get the month, day, year values
 			var month = "";
 			var day = "";
 			var year = "";
 			var date = d.getDate();
-			
+
 			if (date < 10)
 				day += "0";
 			day += date;
@@ -151,23 +151,23 @@
 				year = (d.getYear() + 1900);
 			else
 				year = d.getYear();
-		
+
 			var datePattern = '<openmrs:datePattern />';
 			var sep = datePattern.substr(2,1);
 			var datePatternStart = datePattern.substr(0,1).toLowerCase();
-			
+
 			if (datePatternStart == 'm') /* M-D-Y */
 				str = month + sep + day + sep + year
 			else if (datePatternStart == 'y') /* Y-M-D */
 				str = year + sep + month + sep + day
 			else /* (datePatternStart == 'd') D-M-Y */
 				str = day + sep + month + sep + year
-			
+
 		}
 		return str;
 	}
-	
-	
+
+
 	function drawTable(ret){
    						DWRUtil.removeAllRows('resTableBody');
    						mappedRet = new Array();
@@ -185,8 +185,8 @@
 									if (patient.patientId != null && patient.patientId != "NaN")
 										return patient.identifier;
 								},
-								//first name 
-								function(patient) { 
+								//first name
+								function(patient) {
 										if (patient.patientId != null && patient.patientId != "NaN"){
 										return patient.givenName;
 										} else {
@@ -194,15 +194,15 @@
 								 	      }
 							  		},
 							  	//middle name
-								function(patient) { 
+								function(patient) {
 										if (patient.patientId != null && patient.patientId != "NaN")
 										return  patient.middleName;
 							  		},
 							  	//family name
-							  	function(patient) { 
+							  	function(patient) {
 										if (patient.patientId != null && patient.patientId != "NaN")
 										return  patient.familyName;
-									
+
 							  		},
 							  	function(patient) {
 									if (patient.patientId != null && patient.patientId != "NaN")
@@ -218,7 +218,7 @@
 									if (patient.patientId != null && patient.patientId != "NaN"){
 										if (patient.tribe != "" && patient.tribe != "Unknown")
 										return patient.tribe;
-									} 	
+									}
 								},
 								</c:if>
 								</c:if>
@@ -230,8 +230,8 @@
 										if (patient.attributes != null){
 												mnString = patient.attributes['Mother\'s Name'];
 										}
-									} 
-									return mnString;	
+									}
+									return mnString;
 								},
 								</c:if>
 								</c:if>
@@ -241,13 +241,13 @@
 											if (patient.birthdateEstimated)
 											return "\~";
 										}
-									}	
+									}
 								},
 								function(patient) {
 									if (patient.patientId != null && patient.patientId != "NaN"){
 										if (patient.birthdate != "" && patient.birthdate != "Unknown")
 										return getDateString(patient.birthdate);
-									} 	
+									}
 								}
 								<c:if test ="${!empty useHealthCenter}">
 								<c:if test ="${useHealthCenter}">
@@ -257,8 +257,8 @@
 										if (patient.attributes != null){
 												hcString = patient.attributes['Health Center'];
 										}
-									} 
-									return hcString;	
+									}
+									return hcString;
 								}
 								</c:if>
 								</c:if>
@@ -275,31 +275,31 @@
 								<c:if test ="${useTribe}">
 									function() {return '<b><spring:message code="htmlformflowsheet.tribe"/></b>'},
 								</c:if>
-							</c:if>	
+							</c:if>
 							<c:if test ="${!empty useMothersName}">
 								<c:if test ="${useMothersName}">
 									function() {return '<b><spring:message code="htmlformflowsheet.mothersname"/></b>'},
 								</c:if>
-							</c:if>	
+							</c:if>
 							function() {return " "},
 							function() {return '<b><spring:message code="Person.birthdate"/></b>'}
-							
+
 							<c:if test ="${!empty useHealthCenter}">
-								<c:if test ="${useHealthCenter}">		
+								<c:if test ="${useHealthCenter}">
 									,function() {return '<b><spring:message code="htmlformflowsheet.healthcenter"/></b>'}
 								</c:if>
 							</c:if>
 							];
-							
-							var cellFuncsNextN = [function(){return "t"}];	
-							
-							var formatCountCell = function(options) { 
-								var td = document.createElement("td"); 
+
+							var cellFuncsNextN = [function(){return "t"}];
+
+							var formatCountCell = function(options) {
+								var td = document.createElement("td");
 								td.setAttribute('colSpan','10');
 								td.setAttribute('align', 'center');
-								return td; 
+								return td;
 							}
-							
+
 								if (ret[from]){
    								if (ret.length != retSize){
    										DWRUtil.removeAllRows('resTableHeader');
@@ -324,9 +324,9 @@
    								 		return "<div><Br>&nbsp;&nbsp;&nbsp;<spring:message code="htmlformflowsheet.nopatientsfound"/> <i>"+searchText+"</i>.</div>";
    								 		}];
    								 		DWRUtil.addRows('resTableBody', ["nopatient"], cellFucsNoRecords,  {escapeHtml:false} );
-   								 		
+
    								 		}
-   								 		
+
    								}  else {
 								DWRUtil.addRows('resTableBody', getPartOfSavedRet(from, to, ret), cellFuncs,  {escapeHtml:false} );
    								 $j('table.resTable tbody tr:odd').addClass('oddRow');
@@ -335,10 +335,10 @@
    								 $j('table.resTable tbody tr').attr('onmouseout','javascript:mouseOut(this); refresh(this);');
    								 addRowEventsFindPatient();
    								 fixHeader();
-   								 $j('#results_${model.portletUUID}').css('display','');		
-   								} 				
+   								 $j('#results_${model.portletUUID}').css('display','');
+   								}
    				}
-   				
+
    	function fixHeader(){
    		var thead = document.getElementById('resTableHeader');
 		var trs = thead.getElementsByTagName("tr");
@@ -349,11 +349,11 @@
 			if (toTmp > savedRet.length)
 			toTmp = savedRet.length -1;
 			toTmp++;
-			
+
 			td = trs[0].getElementsByTagName('td')[0];
 			var fromTmp = from + 1;
 			var nextN = "&nbsp;&nbsp;&nbsp;" + fromTmp + " <spring:message code="htmlformflowsheet.to"/> " + toTmp +" <spring:message code="htmlformflowsheet.of"/> " + savedRet.length;
-			
+
 									var lastP = jumps;
 									if (savedRet.length > toTmp){
 										if (savedRet.length - toTmp < lastP)
@@ -372,16 +372,16 @@
 									}
 			td.innerHTML = nextN;
 		}
-   	}			
+   	}
 	function next(){
 		from = from + jumps;
 		if (to + jumps > savedRet.length - 1)
 			to = savedRet.length - 1;
-		else	
+		else
 		to = to + jumps;
 		drawTable(savedRet);
 	}
-	
+
 	function previous(){
 		to = from - 1;
 		from = from - jumps;
@@ -390,7 +390,7 @@
 		if (to < jumps)
 			to = jumps - 1;
 		if (from < 0)
-			from = 0;			
+			from = 0;
 		drawTable(savedRet);
 	}
 	function getPartOfSavedRet(from, to, ret){
@@ -407,8 +407,8 @@
 		}
 		return retTmp;
 	}
-		
-	
+
+
 function useMdrtbLoadingMessage(message) {
   var loadingMessage;
   if (message) loadingMessage = message;
@@ -457,50 +457,50 @@ function useMdrtbLoadingMessage(message) {
 				<input type="text" value="" id="searchBox_${model.portletUUID}" name="searchBox_${model.portletUUID}">
 				<div id="results_${model.portletUUID}" style="position:absolute; z-index:1000; border:2px solid black; background-color:#CCCCCC; ${model.resultStyle}">
 					<table id="resTable" class="resTable" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
-						<thead id="resTableHeader" class="resTableHeader"/>	
+						<thead id="resTableHeader" class="resTableHeader"/>
 						<tbody class="resTableBody" id="resTableBody" style="vertical-align: center"/>
-						<tfoot id="resTableFooter" class="resTableFooter"/>	
+						<tfoot id="resTableFooter" class="resTableFooter"/>
 					</table>
 				</div>
 			</span>
 		</c:when>
 		<c:otherwise>
 			<div id="findPatient">
-				
+
 				<b class="boxHeader"><spring:message code="Patient.find" /></b>
 				<div class="box" style="padding: 15px 15px 15px 15px;">
 				   <table>
 				    <tr><td>1.  <spring:message code="Program.header"/> </td>
-				        <td> 
-							
+				        <td>
+
 							   <c:forEach var="program" items="${model.program}">
-							          <input type="radio" name="programs_${model.portletUUID}" value="${program}" autocomplete='off'/>
+							          <input type="radio" name="programs_${model.portletUUID}" value="${program}" autocomplete='off' checked="true"/>
 							          <htmlformflowsheet:programName program="${program}"/>&nbsp;&nbsp;
 							   </c:forEach>
-						  </td> 
+						  </td>
 					</tr>
 					<tr><td>2. <spring:message code="htmlformflowsheet.restrictByProgram"/></td>
 					    <td>
 								  <input type="radio" name="restrictByProgram" value="false"/> <spring:message code="general.no" />
-								  <input type="radio" name="restrictByProgram" value="true"/> <spring:message code="general.yes" />
+								  <input type="radio" name="restrictByProgram" value="true" checked="true"/> <spring:message code="general.yes" />
 						</td>
-					</tr>		  
+					</tr>
 				    <tr><td>3.
 				     <c:choose>
 							<c:when test="${!empty model.labelCode}"><spring:message code="${model.labelCode}"/></c:when>
 							<c:otherwise><spring:message code="Patient.find"/></c:otherwise>
 						</c:choose>
-				    </td> 
+				    </td>
 					<td/>
-					</tr>	
+					</tr>
 					</table>
 					<input type="text" value="" id="searchBox_${model.portletUUID}" name="searchBox_${model.portletUUID}" style="width:50%;">   &nbsp;&nbsp;<br>
 
 					<div id="results_${model.portletUUID}">
 						<table id="resTable" class="resTable" cellpadding="2" cellspacing="0" style="border-collapse: collapse">
-							<thead id="resTableHeader" class="resTableHeader"/>	
+							<thead id="resTableHeader" class="resTableHeader"/>
 							<tbody class="resTableBody" id="resTableBody" style="vertical-align: center"/>
-							<tfoot id="resTableFooter" class="resTableFooter"/>	
+							<tfoot id="resTableFooter" class="resTableFooter"/>
 						</table>
 					</div>
 				</div>
@@ -515,12 +515,12 @@ function useMdrtbLoadingMessage(message) {
 	 window.onload=init;
 	</script>
 	 <br/>
-	
+
 	<!-- CREATE PATIENT -->
 	<openmrs:globalProperty key="htmlformflowsheet.programConfigurationMap" var="createPatientMapString" />
-	
+
 	<c:if test="${!empty model.createPatientFormId && !empty createPatientMapString}">
-				
+
 				<div>
 				    <b class="boxHeader"><spring:message code="Patient.create" /></b>
 					<div class="box" style="padding: 15px 15px 15px 15px;">
@@ -533,10 +533,10 @@ function useMdrtbLoadingMessage(message) {
 						<a href="#" onClick="buildURL();"><spring:message code="Patient.create" /></a>
 					</div>
 				</div>
-				
+
 				<script>
 					var createPatientLinkMap=${createPatientMapString};
-					
+
 					var createPatientHtmlFormId=${model.createPatientFormId};
 					function buildURL(){
 						if ($j("input[name='createPatientProgram_${model.portletUUID}']:checked") == null || $j("input[name='createPatientProgram_${model.portletUUID}']:checked").length == 0){
@@ -547,21 +547,21 @@ function useMdrtbLoadingMessage(message) {
 					    	var p = $j("input[name='createPatientProgram_${model.portletUUID}']:checked").val();
 					    	if (createPatientLinkMap[p] == null){
 					    		alert("invalid programID.  Please check your Global Property!");
-					    		return;	
-					    	}	
+					    		return;
+					    	}
 					    	window.location='${pageContext.request.contextPath}/module/htmlformentry/htmlFormEntry.form?formId=' + createPatientHtmlFormId + '&mode=enter&returnUrl=${pageContext.request.contextPath}/module/htmlformflowsheet/patientWidgetChart.list?' + createPatientLinkMap[p];
 					    }
 					}
-					
+
 				</script>
 	</c:if>
-	
-	<c:if test="${empty model.createPatientFormId}">
-		<br><span style="color:red;">Cannot show create patient box.  Missing the createPatientFormId in the portlet parameters.</span> <br>
-	</c:if>
-	<c:if test="${empty createPatientMapString}">
-	    <br><span style="color:red;">Cannot show create patient box.  Global property htmlformflowsheet.programConfigurationMap is empty. </span> <br>
-	</c:if>
+
+	<%--<c:if test="${empty model.createPatientFormId}">--%>
+		<%--<br><span style="color:red;">Cannot show create patient box.  Missing the createPatientFormId in the portlet parameters.</span> <br>--%>
+	<%--</c:if>--%>
+	<%--<c:if test="${empty createPatientMapString}">--%>
+	    <%--<br><span style="color:red;">Cannot show create patient box.  Global property htmlformflowsheet.programConfigurationMap is empty. </span> <br>--%>
+	<%--</c:if>--%>
 
 
 </c:if>
