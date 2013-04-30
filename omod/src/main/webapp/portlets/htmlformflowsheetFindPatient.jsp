@@ -470,25 +470,25 @@ function useMdrtbLoadingMessage(message) {
 				<b class="boxHeader"><spring:message code="Patient.find" /></b>
 				<div class="box" style="padding: 15px 15px 15px 15px;">
 				   <table>
-				    <tr><td>1.  <spring:message code="Program.header"/> </td>
-				        <td>
+				    <tr><%--<td>Cerca pazienti nel programma: </td>--%><%--<td>1.  <spring:message code="Program.header"/> </td>--%>
+				        <td>Cerca pazienti nel programma:
 
 							   <c:forEach var="program" items="${model.program}">
-							          <input type="radio" name="programs_${model.portletUUID}" value="${program}" autocomplete='off' checked="true"/>
+							          <input style="opacity: 0" type="radio" name="programs_${model.portletUUID}" value="${program}" autocomplete='off' checked="true"/>
 							          <htmlformflowsheet:programName program="${program}"/>&nbsp;&nbsp;
 							   </c:forEach>
-						  </td>
-					</tr>
-					<tr><td>2. <spring:message code="htmlformflowsheet.restrictByProgram"/></td>
-					    <td>
-								  <input type="radio" name="restrictByProgram" value="false"/> <spring:message code="general.no" />
-								  <input type="radio" name="restrictByProgram" value="true" checked="true"/> <spring:message code="general.yes" />
 						</td>
 					</tr>
-				    <tr><td>3.
+					<tr><td>Scrivere una parte del nome o del cognome del paziente. Le possibili corrispondenze saranno elencate piu' in basso. <%--<spring:message code="htmlformflowsheet.restrictByProgram"/>--%></td>
+					    <td>
+								  <input style="opacity: 0" type="radio" name="restrictByProgram" value="false"/> <style="opacity: 0" spring:message code="general.no" />
+								  <input style="opacity: 0" type="radio" name="restrictByProgram" value="true" checked="true"/> <style="opacity: 0" spring:message code="general.yes" />
+						</td>
+					</tr>
+				    <tr><td>Selezionare uno degli elementi della lista per aprire la scheda corrispondente.
 				     <c:choose>
 							<c:when test="${!empty model.labelCode}"><spring:message code="${model.labelCode}"/></c:when>
-							<c:otherwise><spring:message code="Patient.find"/></c:otherwise>
+							<%--<c:otherwise><spring:message code="Patient.find"/></c:otherwise>--%>
 						</c:choose>
 				    </td>
 					<td/>
